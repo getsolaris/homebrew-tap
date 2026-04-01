@@ -3,13 +3,13 @@ class OhMyWorktree < Formula
   homepage "https://github.com/getsolaris/oh-my-worktree"
   url "https://github.com/getsolaris/oh-my-worktree.git",
       tag:      "v0.1.0",
-      revision: "PLACEHOLDER"
+      revision: "5c3176d0324ca0006e4c55da35f015dd32fbeecb"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
 
   def install
-    system "bun", "install", "--frozen-lockfile"
+    system "bun", "install"
     libexec.install Dir["*"]
     (bin/"omw").write_env_script libexec/"src/index.ts", PATH: "#{Formula["oven-sh/bun/bun"].opt_bin}:${PATH}"
   end
