@@ -8,6 +8,8 @@ class OhMyWorktree < Formula
 
   depends_on "oven-sh/bun/bun"
 
+  skip_clean "libexec"
+
   def install
     system "bun", "install"
     libexec.install Dir["*"]
