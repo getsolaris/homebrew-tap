@@ -8,21 +8,29 @@ class OhMyWorktree < Formula
 
   depends_on "oven-sh/bun/bun"
 
+  # Prevent Homebrew from cleaning files inside libexec
   skip_clean "libexec"
 
   def install
     system "bun", "install"
 
+    # Gzip native dylibs so Homebrew's Mach-O relinking skips them.
+    # @opentui ships dylibs whose headers are too small for install_name_tool.
     Dir.glob("node_modules/**/*.dylib").each { |f| system "gzip", f }
 
     libexec.install Dir["*"]
-    (bin/"omw").write_env_script libexec/"src/index.ts", PATH: "#{Formula["oven-sh/bun/bun"].opt_bin}:${PATH}"
-  end
 
-  def post_install
-    Dir.glob("#{libexec}/node_modules/**/*.dylib.gz").each do |gz|
-      cd File.dirname(gz) { system "gunzip", File.basename(gz) }
-    end
+    # Launcher script decompresses gzipped dylibs on first run
+    (bin/"omw").write <<~SH
+      #!/bin/bash
+      OMW_LIBEXEC="#{libexec}"
+      [ -f "$OMW_LIBEXEC/.dylibs_ready" ] || {
+        find "$OMW_LIBEXEC/node_modules" -name '*.dylib.gz' -exec gunzip -f {} + 2>/dev/null
+        touch "$OMW_LIBEXEC/.dylibs_ready"
+      }
+      exec "#{Formula["oven-sh/bun/bun"].opt_bin}/bun" run "$OMW_LIBEXEC/src/index.ts" "$@"
+    SH
+    chmod 0755, bin/"omw"
   end
 
   test do
