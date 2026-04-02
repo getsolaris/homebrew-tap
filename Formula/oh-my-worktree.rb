@@ -13,19 +13,15 @@ class OhMyWorktree < Formula
   def install
     system "bun", "install"
 
-    dylib = "node_modules/@opentui/core-darwin-arm64/libopentui.dylib"
-    system "gzip", dylib if File.exist?(dylib)
+    Dir.glob("node_modules/**/*.dylib").each { |f| system "gzip", f }
 
     libexec.install Dir["*"]
     (bin/"omw").write_env_script libexec/"src/index.ts", PATH: "#{Formula["oven-sh/bun/bun"].opt_bin}:${PATH}"
   end
 
   def post_install
-    gz = libexec/"node_modules/@opentui/core-darwin-arm64/libopentui.dylib.gz"
-    if gz.exist?
-      cd gz.dirname do
-        system "gunzip", gz.basename.to_s
-      end
+    Dir.glob("#{libexec}/node_modules/**/*.dylib.gz").each do |gz|
+      cd File.dirname(gz) { system "gunzip", File.basename(gz) }
     end
   end
 
