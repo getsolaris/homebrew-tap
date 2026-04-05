@@ -3,7 +3,7 @@ class OhMyWorktree < Formula
   homepage "https://github.com/getsolaris/oh-my-worktree"
   url "https://github.com/getsolaris/oh-my-worktree.git",
       tag:      "v0.6.0",
-      revision: "2e98c0c03d3d6b8ded6ee4dcfee4944114853cd9"
+      revision: "5bbc1caa91080a0c74dd6cb302c6efda35a2644c"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
