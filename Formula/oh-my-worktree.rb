@@ -2,8 +2,8 @@ class OhMyWorktree < Formula
   desc "Git worktree manager with a beautiful TUI"
   homepage "https://github.com/getsolaris/oh-my-worktree"
   url "https://github.com/getsolaris/oh-my-worktree.git",
-      tag:      "v0.5.2",
-      revision: "5d4154e5f7ea1d30d44e3594792c9c3864a818bf"
+      tag:      "v0.7.0",
+      revision: "01aac9dc997d24233809c8a4dd8e9843453d209e"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
