@@ -1,10 +1,13 @@
 class OhMyWorktree < Formula
-  desc "Git worktree manager with a beautiful TUI"
-  homepage "https://github.com/getsolaris/oh-my-worktree"
-  url "https://github.com/getsolaris/oh-my-worktree.git",
+  desc "[DEPRECATED] Renamed to oh-my-lemontree"
+  homepage "https://github.com/getsolaris/oh-my-lemontree"
+  url "https://github.com/getsolaris/oh-my-lemontree.git",
       tag:      "v0.12.0",
       revision: "d24739f27db936f7a40eaf8db4ce4156b661bf76"
   license "MIT"
+
+  deprecate! date: "2026-04-09",
+             because: "renamed to oh-my-lemontree. Run: brew uninstall oh-my-worktree && brew install getsolaris/tap/oh-my-lemontree"
 
   depends_on "oven-sh/bun/bun"
 
