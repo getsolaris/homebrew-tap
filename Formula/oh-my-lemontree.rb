@@ -3,7 +3,7 @@ class OhMyLemontree < Formula
   homepage "https://github.com/getsolaris/oh-my-lemontree"
   url "https://github.com/getsolaris/oh-my-lemontree.git",
       tag:      "v1.0.0",
-      revision: "0000000000000000000000000000000000000000"
+      revision: "69e29a6344b0ccdb811b3fd00cbd80394e2e994f"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
