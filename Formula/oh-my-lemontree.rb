@@ -1,26 +1,25 @@
 class OhMyLemontree < Formula
-  desc "Oh My Lemontree - Git worktree manager with a TUI"
-  homepage "https://github.com/getsolaris/oh-my-lemontree"
-  url "https://github.com/getsolaris/oh-my-lemontree.git",
+  desc "[DEPRECATED] Renamed to copse"
+  homepage "https://github.com/getsolaris/copse"
+  url "https://github.com/getsolaris/copse.git",
       tag:      "v1.0.0",
       revision: "69e29a6344b0ccdb811b3fd00cbd80394e2e994f"
   license "MIT"
 
+  deprecate! date: "2026-04-10",
+             because: "renamed to copse. Run: brew uninstall oh-my-lemontree && brew install getsolaris/tap/copse"
+
   depends_on "oven-sh/bun/bun"
 
-  # Prevent Homebrew from cleaning files inside libexec
   skip_clean "libexec"
 
   def install
     system "bun", "install"
 
-    # Gzip native dylibs so Homebrew's Mach-O relinking skips them.
-    # @opentui ships dylibs whose headers are too small for install_name_tool.
     Dir.glob("node_modules/**/*.dylib").each { |f| system "gzip", f }
 
     libexec.install Dir["*"]
 
-    # Launcher script decompresses gzipped dylibs on first run
     (bin/"oml").write <<~SH
       #!/bin/bash
       OML_LIBEXEC="#{libexec}"
@@ -34,6 +33,6 @@ class OhMyLemontree < Formula
   end
 
   test do
-    assert_match "oh-my-lemontree", shell_output("#{bin}/oml --version")
+    assert_match "copse", shell_output("#{bin}/oml --version")
   end
 end
