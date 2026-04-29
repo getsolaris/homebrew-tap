@@ -2,8 +2,8 @@ class E11h < Formula
   desc "Keyboard-driven TUI for Elasticsearch and OpenSearch"
   homepage "https://github.com/getsolaris/e11h"
   url "https://github.com/getsolaris/e11h.git",
-      tag:      "v0.1.0",
-      revision: "0000000000000000000000000000000000000000"
+      tag:      "v0.2.1",
+      revision: "9ca921b62d91b3d3b992408ae77ba059cce39d35"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
