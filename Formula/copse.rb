@@ -2,8 +2,8 @@ class Copse < Formula
   desc "Copse - Git worktree manager with a TUI"
   homepage "https://github.com/getsolaris/copse"
   url "https://github.com/getsolaris/copse.git",
-      tag:      "v1.3.1",
-      revision: "0c8f7128a1899f96dda274cab908a6afb903a232"
+      tag:      "v1.4.0",
+      revision: "4ffdc58394f0f825ae3247266a7cba2d9ed5d176"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
